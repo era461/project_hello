@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 스케쥴링 bean 생성 Factory 배치 추가시 ref에 크론트리거 설정된 bean 참조-->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="getTestBatch"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- JOB  targetObject : 배치 Service이름, targetMethod : 시작 Method명, concurrent : 동시성 설정 해제 -->
+	<bean id="TestBatch" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="testBatch"/>
+		<property name="targetMethod" value="startBatch"/>
+		<property name="concurrent" value="false"/>
+	</bean>
+	
+	<!-- JOB CronTrigger 배치를 실행할 주기 설정
+		 * * * * * ? (초 분 시 일 월 년)
+		특수 기호 * 모든수를 의미		? 해당항목 사용하지 않음
+		          - 기간 설정			, 특정 시간을 지정
+		          / 시작시간 반복간격	L 마지막 기간(일)
+	-->
+	<bean id="getTestBatch" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="TestBatch"/>
+		<property name="cronExpression" value="0 * * * * ?"></property>
+	</bean>
+</beans>

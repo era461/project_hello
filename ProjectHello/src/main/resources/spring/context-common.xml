@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- servlet-context에서 풀스캔을 할경우 tx bean은 root-context영역에 있기때문에 serlvet-context의 우선순위가 높아 트랜잭션 적용이 안됨 -->
+	<context:component-scan base-package="com.project.hello"> 
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/> 
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/> 
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/> 
+	</context:component-scan>    
+	
+	<!-- properties VMargument의 spring.profiles.active 값을 사용하여 propertes 파일 동적 로딩-->
+	<util:properties id="props" location="classpath:/properties/globals-${spring.profiles.active}.properties"/>
+</beans>

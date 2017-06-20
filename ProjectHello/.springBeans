@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.8.4.201703310634-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[true]]></enableImports>
+	<configs>
+		<config>src/main/resources/spring/context-common.xml</config>
+		<config>src/main/webapp/WEB-INF/config/springmvc/servlet-context.xml</config>
+		<config>src/main/resources/spring/context-datasource.xml</config>
+		<config>src/main/resources/spring/context-transaction.xml</config>
+		<config>src/main/resources/spring/context-mappers.xml</config>
+		<config>src/main/resources/spring/context-scheduling.xml</config>
+	</configs>
+	<autoconfigs>
+	</autoconfigs>
+	<configSets>
+		<configSet>
+			<name><![CDATA[root-context]]></name>
+			<allowBeanDefinitionOverriding>true</allowBeanDefinitionOverriding>
+			<incomplete>false</incomplete>
+			<configs>
+				<config>src/main/resources/spring/context-common.xml</config>
+				<config>src/main/resources/spring/context-datasource.xml</config>
+				<config>src/main/resources/spring/context-mappers.xml</config>
+				<config>src/main/resources/spring/context-transaction.xml</config>
+			</configs>
+			<profiles>
+			</profiles>
+		</configSet>
+	</configSets>
+</beansProjectDescription>
