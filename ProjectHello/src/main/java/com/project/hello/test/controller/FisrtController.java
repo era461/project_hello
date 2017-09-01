@@ -18,7 +18,6 @@ import com.project.hello.test.service.impl.FisrtServiceImpl;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 /**
- * 포뎁스
  * 2017. 06 .14
  * 최초 생성
  * @author YOONHWAN
